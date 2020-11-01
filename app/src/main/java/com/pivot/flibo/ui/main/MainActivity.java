@@ -47,6 +47,7 @@ import com.pivot.flibo.utils.CommonUtils;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 
 
@@ -193,6 +194,27 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @Override
     public void startBrowser(String url) {
+        if (url.startsWith("intent://")) {
+            try {
+                Intent intent = Intent.parseUri(url, Intent.URI_INTENT_SCHEME);
+                if (intent != null) {
+                    PackageManager packageManager = getPackageManager();
+                    ResolveInfo info = packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY);
+                    if (info != null) {
+                        startActivity(intent);
+                    } else {
+                        String fallbackUrl = intent.getStringExtra("browser_fallback_url");
+                        browser(fallbackUrl);
+                    }
+                }
+            } catch (URISyntaxException e) {
+            }
+        } else {
+            browser(url);
+        }
+    }
+
+    private void browser(String url){
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         startActivity(browserIntent);
     }

@@ -28,6 +28,9 @@ public class ApiRequest implements Serializable
     @SerializedName("token")
     @Expose
     private ApiToken token;
+    @SerializedName("firebase_token")
+    @Expose
+    private String firebaseToken;
     private final static long serialVersionUID = 529448769856038592L;
 
     /**
@@ -46,7 +49,7 @@ public class ApiRequest implements Serializable
      * @param email
      * @param token
      */
-    public ApiRequest(String name, String picture, String email, String provider, String providerId, ApiToken token) {
+    public ApiRequest(String name, String picture, String email, String provider, String providerId, ApiToken token, String firebaseToken) {
         super();
         this.name = name;
         this.picture = picture;
@@ -54,6 +57,7 @@ public class ApiRequest implements Serializable
         this.provider = provider;
         this.providerId = providerId;
         this.token = token;
+        this.firebaseToken = firebaseToken;
     }
 
     public String getName() {
@@ -102,6 +106,14 @@ public class ApiRequest implements Serializable
 
     public void setToken(ApiToken token) {
         this.token = token;
+    }
+
+    public String getFirebaseToken() {
+        return firebaseToken;
+    }
+
+    public void setFirebaseToken(String firebaseToken) {
+        this.firebaseToken = firebaseToken;
     }
 
     @Override

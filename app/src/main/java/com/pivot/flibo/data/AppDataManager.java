@@ -5,6 +5,8 @@ import com.pivot.flibo.data.network.ApiHeader;
 import com.pivot.flibo.data.network.ApiHelper;
 import com.pivot.flibo.data.network.model.ApiRequest;
 import com.pivot.flibo.data.network.model.ApiResponse;
+import com.pivot.flibo.data.network.model.notification.Detail;
+import com.pivot.flibo.data.network.model.notification.DetailResponse;
 import com.pivot.flibo.data.prefs.PreferencesHelper;
 import com.pivot.flibo.di.ApplicationContext;
 
@@ -49,6 +51,11 @@ public class AppDataManager implements DataManager {
     @Override
     public Single<ApiResponse> doLoginApiCall(ApiRequest request) {
         return mApiHelper.doLoginApiCall(request);
+    }
+
+    @Override
+    public Single<DetailResponse> doSaveNotificationResponseApiCall(Detail request) {
+        return mApiHelper.doSaveNotificationResponseApiCall(request);
     }
 
     @Override

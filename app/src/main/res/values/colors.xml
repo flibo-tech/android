@@ -11,4 +11,6 @@
     <color name="colorFacebook">#3B5998</color>
     <color name="colorGoogle">#DC4E41</color>
 
+    <color name="colorAction">#294ed2</color>
+
 </resources>

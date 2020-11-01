@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "156595541596",
+    "firebase_url": "https://flibo-webview-1584698808325.firebaseio.com",
+    "project_id": "flibo-webview-1584698808325",
+    "storage_bucket": "flibo-webview-1584698808325.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156595541596:android:c9f2607ec8658825b87899",
+        "android_client_info": {
+          "package_name": "com.pivot.flibo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "156595541596-8jh1rk6p655maaudhn3dbuccvvhmirgc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pivot.flibo",
+            "certificate_hash": "b077750fd800657be9361f2a3b7ef13f23ff9c79"
+          }
+        },
+        {
+          "client_id": "156595541596-hbbddlta15khrd6hog1j8f3gc2d0o59e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCP1Dqw2P-mXhcCv223TgR4IJ2fuZHU5P8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "156595541596-hbbddlta15khrd6hog1j8f3gc2d0o59e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

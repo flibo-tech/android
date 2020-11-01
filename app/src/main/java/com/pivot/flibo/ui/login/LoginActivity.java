@@ -36,7 +36,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.pivot.flibo.BuildConfig;
 import com.pivot.flibo.R;
+import com.pivot.flibo.service.fcm.MyFirebaseMessagingService;
 import com.pivot.flibo.ui.base.BaseActivity;
 import com.pivot.flibo.ui.main.MainActivity;
 import com.pivot.flibo.utils.AppConstants;
@@ -126,7 +128,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
 
     @Override
     public void openMainActivity(String userId) {
-        String url = AppConstants.SITE_URL+ userId+"&webview=true";
+        String url = BuildConfig.SITE_URL+ userId+"&webview=true";
         if(redirectUrl != null && !TextUtils.isEmpty(redirectUrl)){
             startActivity(MainActivity.getStartIntent(this, url, redirectUrl));
             finish();

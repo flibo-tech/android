@@ -2,6 +2,8 @@ package com.pivot.flibo.ui.login;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+
 import com.androidnetworking.error.ANError;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -13,6 +15,10 @@ import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.pivot.flibo.R;
 import com.pivot.flibo.data.DataManager;
 import com.pivot.flibo.data.network.model.ApiRequest;
@@ -117,33 +123,48 @@ public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V> imp
     private void doSignIn(ApiRequest request){
         getMvpView().showLoading();
 
-        getCompositeDisposable().add(getDataManager()
-                .doLoginApiCall(request)
-                .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().ui())
-                .subscribe(new Consumer<ApiResponse>() {
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                     @Override
-                    public void accept(ApiResponse response) throws Exception {
-                        if (!isViewAttached()) {
-                            return;
-                        }
-                        getDataManager().updateUserInfo(response.getSessionId(), DataManager.LoggedInMode.LOGGED_IN_MODE_GOOGLE);
-                        getMvpView().hideLoading();
-                        getMvpView().openMainActivity(response.getSessionId());
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        if (!isViewAttached()) {
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            AppLogger.e(task.getException().toString());
                             return;
                         }
 
-                        if (throwable instanceof ANError) {
-                            ANError anError = (ANError) throwable;
-                            handleApiError(anError);
-                        }
-                        getMvpView().hideLoading();
+                        String token = task.getResult().getToken();
+                        AppLogger.e("Token "+token);
+                        request.setFirebaseToken(token);
+
+                        getCompositeDisposable().add(getDataManager()
+                                .doLoginApiCall(request)
+                                .subscribeOn(getSchedulerProvider().io())
+                                .observeOn(getSchedulerProvider().ui())
+                                .subscribe(new Consumer<ApiResponse>() {
+                                    @Override
+                                    public void accept(ApiResponse response) throws Exception {
+                                        if (!isViewAttached()) {
+                                            return;
+                                        }
+                                        getDataManager().updateUserInfo(response.getSessionId(), DataManager.LoggedInMode.LOGGED_IN_MODE_GOOGLE);
+                                        getMvpView().hideLoading();
+                                        getMvpView().openMainActivity(response.getSessionId());
+                                    }
+                                }, new Consumer<Throwable>() {
+                                    @Override
+                                    public void accept(Throwable throwable) throws Exception {
+                                        if (!isViewAttached()) {
+                                            return;
+                                        }
+
+                                        if (throwable instanceof ANError) {
+                                            ANError anError = (ANError) throwable;
+                                            handleApiError(anError);
+                                        }
+                                        getMvpView().hideLoading();
+                                    }
+                                }));
                     }
-                }));
+                });
     }
 }

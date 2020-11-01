@@ -60,14 +60,14 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if(url.equals(AppConstants.SITE_HOME_URL)){
+                if(url.equals(BuildConfig.SITE_HOME_URL)){
                     getDataManager().setUserAsLoggedOut();
                     getMvpView().logout();
                     getMvpView().openLoginActivity();
                     return false;
                 }
 
-                if(!url.contains(AppConstants.BASE_SITE_URL)){
+                if(!url.contains(BuildConfig.BASE_SITE_URL)){
                     view.stopLoading();
                     getMvpView().startBrowser(url);
                     return false;

@@ -1,14 +1,24 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('D:\\UpWork\\Android\\Client\\Flibo-Data\\keys\\key.jks')
+            storePassword 'Flibo.2019'
+            keyAlias = 'key'
+            keyPassword 'Flibo.2019'
+        }
+    }
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.pivot.flibo"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
@@ -20,13 +30,21 @@ android {
 
     buildTypes {
         debug{
-            buildConfigField("String", "BASE_URL", "\"https://signin.flibo.ai\"")
+            buildConfigField("String", "BASE_URL", "\"https://yzal-dev-signin.flibo.ai\"")
+            buildConfigField("String", "SITE_URL", "\"https://yzal-dev.flibo.ai/?id=\"")
+            buildConfigField("String", "SITE_HOME_URL", "\"https://yzal-dev.flibo.ai/\"")
+            buildConfigField("String", "BASE_SITE_URL", "\"flibo.ai\"")
+            buildConfigField("String", "BASE_APP_URL", "\"https://yzal-dev-app.flibo.ai\"")
             buildConfigField("String", "API_KEY", "\"\"")
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField("String", "BASE_URL", "\"https://signin.flibo.ai\"")
+            buildConfigField("String", "SITE_URL", "\"https://flibo.ai/?id=\"")
+            buildConfigField("String", "SITE_HOME_URL", "\"https://flibo.ai/\"")
+            buildConfigField("String", "BASE_SITE_URL", "\"flibo.ai\"")
+            buildConfigField("String", "BASE_APP_URL", "\"https://app.flibo.ai\"")
             buildConfigField("String", "API_KEY", "\"\"")
         }
     }
@@ -86,6 +104,10 @@ dependencies {
 
     //google
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    implementation 'com.google.firebase:firebase-analytics:17.2.2'
+    implementation 'com.google.firebase:firebase-messaging:20.1.5'
+    implementation 'com.google.firebase:firebase-analytics:17.3.0'
+    implementation 'com.google.firebase:firebase-crashlytics:17.0.0-beta04'
 
     //facebook
     implementation 'com.facebook.android:facebook-login:[5,6)'

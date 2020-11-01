@@ -14,9 +14,12 @@ public final class AppConstants {
 
     public static final String TIMESTAMP_FORMAT = "yyyyMMdd_HHmmss";
 
-    public static final String SITE_URL ="https://flibo.ai/?id=";
-    public static final String SITE_HOME_URL ="https://flibo.ai/";
-    public static final String BASE_SITE_URL ="flibo.ai";
+    public static final String NOTIFICATION_ID = "notificationId";
+    public static final String TAPPED_ON = "tappedOn";
+    public static final String BUTTON_INDEX = "buttonIndex";
+
+    public static final String CHANNEL_NAME = "Flibo";
+    public static final String CHANNEL_ID = "222";
 
     private AppConstants() {
 
