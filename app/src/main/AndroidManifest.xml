@@ -75,41 +75,41 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="yzal-dev.flibo.ai"
+                    android:host="flibo.ai"
                     android:pathPrefix="/profile"
                     android:scheme="https" />
                 <data
-                    android:host="yzal-dev.flibo.ai"
+                    android:host="flibo.ai"
                     android:pathPrefix="/content"
                     android:scheme="https" />
 
                 <data
-                    android:host="yzal-dev.flibo.ai"
+                    android:host="flibo.ai"
                     android:pathPrefix="/request"
                     android:scheme="https" />
 
                 <data
-                    android:host="yzal-dev.flibo.ai"
+                    android:host="flibo.ai"
                     android:pathPrefix="/suggest"
                     android:scheme="https" />
 
                 <data
-                    android:host="yzal-dev.flibo.ai"
+                    android:host="flibo.ai"
                     android:pathPrefix="/review"
                     android:scheme="https" />
 
                 <data
-                    android:host="yzal-dev.flibo.ai"
+                    android:host="flibo.ai"
                     android:pathPrefix="/activity"
                     android:scheme="https" />
 
                 <data
-                    android:host="yzal-dev.flibo.ai"
+                    android:host="flibo.ai"
                     android:pathPrefix="/ratings"
                     android:scheme="https" />
 
                 <data
-                    android:host="yzal-dev.flibo.ai"
+                    android:host="flibo.ai"
                     android:pathPrefix="/watchlist"
                     android:scheme="https" />
             </intent-filter>
