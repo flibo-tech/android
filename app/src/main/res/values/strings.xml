@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">FLIBO</string>
+    <string name="app_sub">Discover Movies &amp; TV Series</string>
+
+    <string name="click_back">Please click BACK again to exit</string>
+
+    <!--play store-->
+    <string name="app_google_play_store_link">"https://play.google.com/store/apps/details?id="</string>
+    <string name="app_market_link">"market://details?id="</string>
+
+    <!--App Message-->
+    <string name="api_retry_error">Please retry!</string>
+    <string name="api_default_error">Something wrong happened!</string>
+    <string name="some_error">Some Error Occurred!</string>
+    <string name="connection_error">Internet connection lost!</string>
+    <string name="authority">com.pivot.flibo.provider</string>
+    <string name="javascript_interface">Android</string>
+
+    <!--faecbook-->
+    <string name="facebook_app_id">1502792486552679</string>
+    <string name="fb_login_protocol_scheme">fb1502792486552679</string>
+
+    <string name="facebook">Continue with Facebook</string>
+    <string name="google">Continue with Google</string>
+
+</resources>
