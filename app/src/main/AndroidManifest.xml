@@ -112,11 +112,6 @@
                     android:host="yzal-dev.flibo.ai"
                     android:pathPrefix="/watchlist"
                     android:scheme="https" />
-
-                <data
-                    android:host="yzal-dev.flibo.ai"
-                    android:pathPrefix="/posts"
-                    android:scheme="https" />
             </intent-filter>
         </activity>
     </application>

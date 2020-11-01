@@ -80,7 +80,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         getApplicationContext(), CHANNEL_ID)
                         .setPriority(Notification.PRIORITY_HIGH)
                         .setAutoCancel(true)
-                        .setSmallIcon(R.drawable.ic_flibo_logo_color_reverse)
+                        .setSmallIcon(R.drawable.ic_flibo_notification_logo)
                         .setContentIntent(pi)
                         .setContentText(content)
                         .setContentTitle(title);
