@@ -6,6 +6,8 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.webkit.WebChromeClient;
+import android.webkit.PermissionRequest;
 import android.widget.Toast;
 
 import com.pivot.flibo.BuildConfig;
@@ -47,6 +49,12 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
             public void shareCollage(String imageUrl, String profileUrl)
             {
                 getMvpView().shareProfile(imageUrl, profileUrl);
+            }
+
+            @JavascriptInterface
+            public void requestMicrophone()
+            {
+                getMvpView().requestMicrophonePermission();
             }
         }, getMvpView().getStringById(R.string.javascript_interface));
 
@@ -90,6 +98,13 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
         };
 
         webView.setWebViewClient(client);
+        webView.setWebChromeClient(new WebChromeClient()
+           {
+               @Override
+               public void onPermissionRequest(final PermissionRequest request) {
+                   request.grant(request.getResources());
+               }
+           });
         webView.loadUrl(url);
     }
 

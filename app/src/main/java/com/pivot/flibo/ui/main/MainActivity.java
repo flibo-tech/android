@@ -1,5 +1,6 @@
 package com.pivot.flibo.ui.main;
 
+import android.Manifest;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.pm.PackageManager;
@@ -98,7 +99,18 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     protected void setUp() {
         String url = getIntent().getStringExtra(URL);
         String redirectUrl = getIntent().getStringExtra(REDIRECT_URL);
-        mPresenter.onViewPrepared(webView, url, redirectUrl);
+        if (isNetworkConnected()) {
+            mPresenter.onViewPrepared(webView, url, redirectUrl);
+        } else {
+            showMessage("No internet connection!");
+        }
+    }
+
+    @Override
+    public void requestMicrophonePermission() {
+        if (!(hasPermission(Manifest.permission.MODIFY_AUDIO_SETTINGS) && hasPermission(Manifest.permission.RECORD_AUDIO))) {
+            requestPermissionsSafely(new String[]{Manifest.permission.RECORD_AUDIO, Manifest.permission.MODIFY_AUDIO_SETTINGS}, 1);
+        }
     }
 
     @Override
