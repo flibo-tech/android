@@ -83,7 +83,7 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V> i
                 == DataManager.LoggedInMode.LOGGED_IN_MODE_LOGGED_OUT.getType()) {
             getMvpView().openLoginActivity(data != null  ? data.toString() : null);
         } else {
-            String url = BuildConfig.SITE_URL+ getDataManager().getCurrentUserId()+"&webview=true";
+            String url = BuildConfig.SITE_URL+ getDataManager().getCurrentUserId()+"&webview=true&releaseNo=4";
             if(data != null){
                 String intentUrl = data.toString();
                 if(!intentUrl.contains(BuildConfig.BASE_SITE_URL)){

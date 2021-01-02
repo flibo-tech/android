@@ -128,7 +128,7 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
 
     @Override
     public void openMainActivity(String userId) {
-        String url = BuildConfig.SITE_URL+ userId+"&webview=true";
+        String url = BuildConfig.SITE_URL+ userId+"&webview=true&releaseNo=4";
         if(redirectUrl != null && !TextUtils.isEmpty(redirectUrl)){
             startActivity(MainActivity.getStartIntent(this, url, redirectUrl));
             finish();
